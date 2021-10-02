@@ -1,16 +1,19 @@
 'use strict';
 
+let fibonacci_memory = new Map();
+
+fibonacci_memory.set(0, 0);
+fibonacci_memory.set(1, 1);
+
 function fibonacci(n){
-    if(n === 0){
-        return 0;
+
+    if(fibonacci_memory.has(n)){
+        return fibonacci_memory.get(n);
     }
 
-    if(n === 1){
-        return 1;
-    }
-
-    return fibonacci(n-2)+fibonacci(n-1);
-
+    let fibonacci_value = fibonacci(n-2)+fibonacci(n-1);
+    fibonacci_memory.set(n, fibonacci_value);
+    return fibonacci_value;
 }
 
 const length = 40;
